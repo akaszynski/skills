@@ -7,6 +7,9 @@ Each skill is a self-contained directory with a `SKILL.md` entry point.
 
 - `de-ai-ify`: Edit human-facing prose to remove formulaic machine-written
   patterns while preserving facts, technical precision, and the author's voice.
+- `write-like-alex`: Rewrite text in Alex Kaszynski's evidenced voice, with
+  separate registers for collaboration, GitHub, documentation, papers, reports,
+  and presentations.
 
 ## Install
 
@@ -28,7 +31,7 @@ copy or link the desired skill directory into its configured skills path.
 ## Validate
 
 ```bash
-python3 tests/test_audit_text.py
+python3 -m unittest discover -s tests -p 'test_*.py'
 npx skills add . --list
 ```
 
