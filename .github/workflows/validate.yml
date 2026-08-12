@@ -1,0 +1,44 @@
+name: Validate skills
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run audit tests
+        run: python3 tests/test_audit_text.py
+      - name: Validate skill package
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          path = Path("de-ai-ify/SKILL.md")
+          text = path.read_text(encoding="utf-8")
+          match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+          if match is None:
+              raise SystemExit("SKILL.md is missing YAML frontmatter")
+          fields = {
+              line.split(":", 1)[0].strip()
+              for line in match.group(1).splitlines()
+              if ":" in line
+          }
+          if fields != {"name", "description"}:
+              raise SystemExit(f"unexpected frontmatter fields: {fields}")
+          if "name: de-ai-ify" not in match.group(0):
+              raise SystemExit("skill name does not match directory")
+          if len(text.splitlines()) > 500:
+              raise SystemExit("SKILL.md exceeds 500 lines")
+          PY

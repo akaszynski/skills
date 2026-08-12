@@ -1,0 +1,7 @@
+interface:
+  display_name: "De-AI-ify"
+  short_description: "Make prose natural without changing facts"
+  default_prompt: "Use $de-ai-ify to revise this text while preserving its facts, precision, and authorial voice."
+
+policy:
+  allow_implicit_invocation: true
