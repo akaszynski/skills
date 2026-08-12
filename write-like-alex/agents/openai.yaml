@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Like Alex"
+  short_description: "Match Alex Kaszynski writing style"
+  default_prompt: "Use $write-like-alex to revise this text in the established Alex Kaszynski voice while preserving every fact."
