@@ -1,7 +1,8 @@
-# Common agent skills
+# Common agent skills moved
 
-This repository is the shared source for skills used across agent harnesses.
-Each skill is a self-contained directory with a `SKILL.md` entry point.
+The canonical skill source is now
+[`akaszynski/agents`](https://github.com/akaszynski/agents/tree/main/skills).
+This repository is retained for history and is no longer updated.
 
 ## Available skills
 
@@ -13,26 +14,20 @@ Each skill is a self-contained directory with a `SKILL.md` entry point.
 
 ## Install
 
-List the skills exposed by this repository:
+List the skills exposed by the agents repository:
 
 ```bash
-npx skills add akaszynski/skills --list
+npx skills add akaszynski/agents --list
 ```
 
 Install the skills for the agents supported by the local Skills CLI:
 
 ```bash
-npx skills add akaszynski/skills --global --agent '*' --yes
+npx skills add akaszynski/agents --global --agent '*' --yes
 ```
 
 The skill format is portable. A harness that does not use the Skills CLI can
 copy or link the desired skill directory into its configured skills path.
 
-## Validate
-
-```bash
-python3 -m unittest discover -s tests -p 'test_*.py'
-npx skills add . --list
-```
-
-Third-party material and its license are identified inside the relevant skill.
+The historical skill files and third-party license notices remain available in
+this repository. New changes belong under `skills/` in `akaszynski/agents`.
